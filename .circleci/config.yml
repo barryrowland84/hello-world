@@ -29,9 +29,9 @@ jobs:
           command: docker build -t gcr.io/spherical-plane-479301-d5/hello-world:1.1.0 .
 
       - gcr/push-image:
-          registry-url: gcr.io/spherical-plane-479301-d5
+          registry-url: gcr.io
           image: hello-world
-          tag: 1.1.0
+          tag: "1.1.0"
 
 workflows:
   build:
