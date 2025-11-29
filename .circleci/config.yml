@@ -26,7 +26,8 @@ jobs:
           command: |
             NEW_AUDIENCE="//iam.googleapis.com/projects/192970750220/locations/global/workloadIdentityPools/alexdev-pool/providers/alexdev-provider"
             jq --arg AUD "$NEW_AUDIENCE" '.audience = $AUD' /home/circleci/gcp_cred_config.json > /home/circleci/gcp_cred_config.json.tmp && mv /home/circleci/gcp_cred_config.json.tmp /home/circleci/gcp_cred_config.json
-
+            cat "/home/circleci/oidc_token.json"
+      
 
       - run:
           name: Same show credentials
