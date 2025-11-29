@@ -14,9 +14,6 @@ jobs:
 
     working_directory: *working_directory
 
-    docker:
-      - image: cimg/base:current
-
     steps:
       - checkout
       - google-oidc/authenticate
