@@ -33,16 +33,7 @@ jobs:
       #     command: docker build -t gcr.io/spherical-plane-479301-d5/hello-world:1.1.0 .
 
       - run:
-        command: |
-          #!/bin/bash 
-
-          IFS="," read -ra DOCKER_TAGS <<< "1.1.0"
-          PROJECT_ID="${GOOGLE_PROJECT_ID}"
-
-          for tag_to_eval in "${DOCKER_TAGS[@]}"; do
-              TAG=$(eval echo "$tag_to_eval")
-              docker push "gcr.io/$PROJECT_ID/hello-world:1.1.0"
-          done
+        command: docker build -t gcr.io/${GOOGLE_PROJECT_ID}/hello-world:1.1.0
 
 
       # - gcr/push-image:
