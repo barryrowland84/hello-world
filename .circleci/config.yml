@@ -37,11 +37,11 @@ jobs:
           #!/bin/bash 
 
           IFS="," read -ra DOCKER_TAGS <<< "1.1.0"
-          PROJECT_ID="spherical-plane-479301-d5"
+          PROJECT_ID="${GOOGLE_PROJECT_ID}"
 
           for tag_to_eval in "${DOCKER_TAGS[@]}"; do
               TAG=$(eval echo "$tag_to_eval")
-              docker push "gcr.io/spherical-plane-479301-d5/hello-world:1.1.0"
+              docker push "gcr.io/$PROJECT_ID/hello-world:1.1.0"
           done
 
 
