@@ -16,8 +16,7 @@ jobs:
 
     steps:
       - checkout
-      - google-oidc/authenticate:
-          audience: projects/192970750220/locations/global/workloadIdentityPools/alex-pool/providers/alex-provider
+      - google-oidc/authenticate
       - run:
           name: Setup docker credentials
           command: gcloud auth configure-docker
