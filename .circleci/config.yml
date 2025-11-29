@@ -26,7 +26,7 @@ jobs:
 
       - gcr/push-image:
           registry-url: gcr.io
-          google-project-id: spherical-plane-479301-d5
+          google-project-id: << pipeline.parameters.gcp_project_id >>
           image: hello-world
           tag: 1.1.0
 
