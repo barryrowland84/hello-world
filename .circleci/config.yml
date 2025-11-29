@@ -22,11 +22,14 @@ jobs:
           command: gcloud auth configure-docker
       - run:
           name: "Build"
+          command: docker build -t hello-world .
+
+      - run:
+          name: "Build with gcr url"
           command: docker build -t gcr.io/spherical-plane-479301-d5/hello-world:1.1.0 .
 
       - gcr/push-image:
           registry-url: gcr.io
-          google-project-id: << pipeline.parameters.gcp_project_id >>
           image: hello-world
           tag: 1.1.0
 
