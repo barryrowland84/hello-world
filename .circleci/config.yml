@@ -20,17 +20,14 @@ jobs:
       - run:
           name: Setup docker credentials
           command: gcloud auth configure-docker
-      - run:
-          name: "Build"
-          command: docker build -t hello-world .
 
       - run:
           name: "Build with gcr url"
           command: docker build -t gcr.io/spherical-plane-479301-d5/hello-world:1.2.0 .
 
-      # - run:
-      #     name: "Push the docker image"
-      #     command: docker build -t gcr.io/spherical-plane-479301-d5/hello-world:1.1.0 .
+      - run:
+          name: "Push the docker image"
+          command: docker push gcr.io/spherical-plane-479301-d5/hello-world:1.1.0
 
       # - run:
       #   name: "Push the docker image"
