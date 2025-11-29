@@ -35,10 +35,12 @@ jobs:
           tag: 1.0.0
 
 workflows:
-  say-hello-workflow: 
-    context:
-      - gcp
-    filters:
-      branches:
-        only:
-          - main
+  build:
+    jobs:
+      - build-push-image:
+          context:
+            - gcp
+          filters:
+            branches:
+              only:
+                - main
