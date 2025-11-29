@@ -22,6 +22,14 @@ jobs:
           command: gcloud auth configure-docker
 
       - run:
+          name: Show the credentials
+          command: echo $GOOGLE_APPLICATION_CREDENTIALS
+
+      - run:
+          name: Same show credentials
+          command: cat $GOOGLE_APPLICATION_CREDENTIALS | head
+
+      - run:
           name: "Build with gcr url"
           command: docker build -t gcr.io/spherical-plane-479301-d5/hello-world:1.2.0 .
 
