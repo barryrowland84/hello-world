@@ -26,14 +26,14 @@ jobs:
 
       - run:
           name: "Build with gcr url"
-          command: docker build -t gcr.io/spherical-plane-479301-d5/hello-world:1.1.0 .
+          command: docker build -t gcr.io/spherical-plane-479301-d5/hello-world:1.2.0 .
 
       # - run:
       #     name: "Push the docker image"
       #     command: docker build -t gcr.io/spherical-plane-479301-d5/hello-world:1.1.0 .
 
       - run:
-        command: docker build -t gcr.io/${GOOGLE_PROJECT_ID}/hello-world:1.1.0
+        command: docker build -t gcr.io/${GOOGLE_PROJECT_ID}/hello-world:1.2.0
 
 
       # - gcr/push-image:
