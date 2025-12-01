@@ -25,12 +25,12 @@ jobs:
           name: Build the docker image
           command: >-
             docker build 
-            -t gcr.io/spherical-plane-479301-d5/hello-world:1.1.0 .
+            -t gcr.io/spherical-plane-479301-d5/hello-world:${CIRCLE_SHA1:0:7} .
 
       - gcr/push-image:
           registry-url: gcr.io
           image: hello-world
-          tag: "1.1.0"
+          tag: ${CIRCLE_SHA1:0:7}
 
 workflows:
   build:
